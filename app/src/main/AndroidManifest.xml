@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.ondra.fuelbook">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon"
+        android:name=".CarApp">
+        <activity android:name=".activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.ListCar"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity
+            android:name=".activity.NewCar"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity android:name=".activity.OptionsCar" />
+        <activity android:name=".activity.NewNotesFuel" />
+        <activity android:name=".activity.ListFuel"></activity>
+
+        <meta-data android:name="DATABASE" android:value="car.db" />
+        <meta-data android:name="VERSION" android:value="2" />
+        <meta-data android:name="QUERY_LOG" android:value="true" />
+        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.example.ondra.fuelbook" />
+
+    </application>
+
+</manifest>
