@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.ondra.fuelbook.Entity.Car;
 import com.example.ondra.fuelbook.R;
 import com.example.ondra.fuelbook.adapter.CarAdapter;
+import com.example.ondra.fuelbook.database.CarData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ public class ListCar extends Activity {
     private CarAdapter carAdapter;
     private List<Car> carList = new ArrayList<>();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +39,7 @@ public class ListCar extends Activity {
 
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         carAdapter = new CarAdapter(carList);
+
         carAdapter.setCallback(new CarAdapter.CarAdapterOnClickListener() {
             @Override
             public void onClick(int position) {

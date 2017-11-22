@@ -37,7 +37,14 @@ public class NewCar extends Activity {
 
         CarData car= new CarData(Nazev, Spotreba, Tachometr,4);
         car.save();
+/*
+        CarData carText = CarData.findById(CarData.class, 4);
+        String vypis="Ulozeno: " + carText.nazev.toString() + ", " + carText.spotreba.toString() + " a " + carText.tachometr;
+
+        Toast.makeText(getApplicationContext(), vypis, Toast.LENGTH_LONG).show();*/
+        startActivity(new Intent(getApplicationContext(), OptionsCar.class));
+
     }
 
-}
+        }
 
