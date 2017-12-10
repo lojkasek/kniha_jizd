@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.example.ondra.fuelbook.Entity.Car;
 import com.example.ondra.fuelbook.R;
+import com.example.ondra.fuelbook.database.CarData;
 
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
 
 
     public interface CarAdapterOnClickListener{
-        public void onClick(int position);
+        public void onClick(long position);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -50,7 +51,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
 
         @Override
         public void onClick(View view) {
-            callback.onClick(carList.get(getAdapterPosition()).idcar);
+            callback.onClick(carList.get(getAdapterPosition()).id);
         }
     }
 
@@ -71,8 +72,8 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Car car = carList.get(position);
         holder.title.setText(car.nazev);
-        holder.speedmeter.setText(car.tachometr);
-        holder.gasolineUsage.setText(car.spotreba);
+        holder.speedmeter.setText(String.valueOf(car.tachometr));
+        holder.gasolineUsage.setText(String.valueOf(car.spotreba));
 
     }
 

@@ -42,9 +42,13 @@ public class ListCar extends Activity {
 
         carAdapter.setCallback(new CarAdapter.CarAdapterOnClickListener() {
             @Override
-            public void onClick(int position) {
+            public void onClick(long position) {
+
                 Toast.makeText(getApplicationContext(), "Pozice " + position, Toast.LENGTH_LONG).show();
-                startActivity(new Intent(getApplicationContext(), OptionsCar.class));
+
+                Intent i = new Intent(getApplicationContext(), OptionsCar.class);
+                i.putExtra("ID_CARS", position);
+                startActivity(i);
             }
         });
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -53,12 +57,31 @@ public class ListCar extends Activity {
         mRecyclerView.setAdapter(carAdapter);
 
         initDataToList();
+
+
+
+
         }
 
         public void initDataToList(){
-            carList.add(new Car("Skoda Octavia", "7.5", "15200", 1));
-            carList.add(new Car("Ford", "7.5", "150000", 2));
-            carList.add(new Car("Opel", "7.5", "36000",3 ));
+
+
+            //carList.add(new Car("Skoda Octavia", 7.5, 15200));
+            //carList.add(new Car("Ford", 7.5, 150000));
+            //carList.add(new Car("Opel", 7.5, 36000));
+
+            //DATA FROM DB
+            List<CarData> cars = CarData.listAll(CarData.class);
+
+
+            if(cars != null & !cars.isEmpty()){
+                for(CarData carData : cars){
+                    carList.add(new Car(carData.getId(), carData.nazev, carData.spotreba, carData.tachometr));
+                }
+            }
+
+            //DATA FROM DB CONVERT DO CAR LIST ENTITY
+
             carAdapter.notifyDataSetChanged();
         }
 }

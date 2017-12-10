@@ -2,6 +2,8 @@ package com.example.ondra.fuelbook.database;
 
 import com.orm.SugarRecord;
 
+import java.util.List;
+
 /**
  * Created by Ondra on 17.11.2017.
  */
@@ -9,19 +11,18 @@ import com.orm.SugarRecord;
 public class CarData extends SugarRecord {
 
     public String nazev;
-    public String spotreba;
-    public String tachometr;
-    public int idcar;
+    public Double spotreba;
+    public Integer tachometr;
 
 
     public CarData(){
     }
 
-    public CarData(String nazev, String spotreba, String tachometr, int idcar) {
+    public CarData(String nazev, Double spotreba, int tachometr) {
         this.nazev = nazev;
         this.spotreba = spotreba;
         this.tachometr = tachometr;
-        this.idcar=idcar;
     }
+
 
 }

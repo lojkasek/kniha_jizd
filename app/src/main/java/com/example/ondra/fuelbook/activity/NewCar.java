@@ -32,10 +32,10 @@ public class NewCar extends Activity {
 
     public void saveCar(View v) {
         String Nazev = NazevET.getText().toString();
-        String Spotreba = SpotrebaET.getText().toString();
-        String Tachometr = TachometrET.getText().toString();
+        Double Spotreba = Double.valueOf(SpotrebaET.getText().toString());
+        Integer Tachometr = Integer.valueOf(TachometrET.getText().toString());
 
-        CarData car= new CarData(Nazev, Spotreba, Tachometr,4);
+        CarData car= new CarData(Nazev, Spotreba, Tachometr);
         car.save();
 /*
         CarData carText = CarData.findById(CarData.class, 4);

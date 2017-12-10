@@ -7,16 +7,16 @@ package com.example.ondra.fuelbook.Entity;
 public class Car {
 
     public String nazev;
-    public String spotreba;
-    public String tachometr;
-    public int idcar;
+    public Double spotreba;
+    public int tachometr;
+    public long id;
 
 
-    public Car(String nazev, String spotreba, String tachometr, int idcar) {
+    public Car(long id, String nazev, Double spotreba, int tachometr) {
+        this.id = id;
         this.nazev = nazev;
         this.spotreba = spotreba;
         this.tachometr = tachometr;
-        this.idcar=idcar;
     }
 }
 

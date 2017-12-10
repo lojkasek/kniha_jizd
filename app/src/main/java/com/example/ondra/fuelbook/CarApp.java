@@ -5,6 +5,7 @@ import android.app.Application;
 import android.app.Application;
 import android.widget.TextView;
 
+import com.example.ondra.fuelbook.adapter.CarAdapter;
 import com.example.ondra.fuelbook.database.CarData;
 import com.facebook.stetho.Stetho;
 import com.orm.SugarApp;
@@ -27,6 +28,7 @@ public class CarApp extends Application {
 
         /*CarData cc = new CarData("Skoda Fabia", "7,5", "145000", 1);
         cc.save();*/
+
 
     }
 

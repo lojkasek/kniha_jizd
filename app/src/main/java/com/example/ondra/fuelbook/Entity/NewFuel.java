@@ -17,7 +17,7 @@ public class NewFuel {
         this.date = date;
         this.place = place;
         this.price = price;
-        this.pricesum=pricesum;
-        this.acttachometr=acttachometr;
+        this.pricesum = pricesum;
+        this.acttachometr = acttachometr;
     }
 }

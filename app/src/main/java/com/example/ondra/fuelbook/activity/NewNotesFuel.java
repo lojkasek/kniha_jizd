@@ -1,20 +1,29 @@
 package com.example.ondra.fuelbook.activity;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ondra.fuelbook.R;
+import com.example.ondra.fuelbook.database.CarData;
 import com.example.ondra.fuelbook.database.FuelData;
 
-public class NewNotesFuel extends Activity {
+import java.util.Calendar;
 
+public class NewNotesFuel extends Activity implements View.OnClickListener{
 
+    DatePicker myDate;
     EditText FuelDateET, FuelKmET, FuelPriceET, FuelPriceSumET, FuelPlaceET;
+    Button btnDatePicker,btnSave;
+    private int mYear, mMonth, mDay;
+    int id_car;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,21 +35,54 @@ public class NewNotesFuel extends Activity {
         FuelPriceET = findViewById(R.id.FuelPrice);
         FuelPriceSumET = findViewById(R.id.FuelPriceSum);
         FuelPlaceET = findViewById(R.id.FuelPlace);
+
+        btnDatePicker=(Button)findViewById(R.id.btn_date);
+        btnSave=(Button)findViewById(R.id.button);
+
+        btnDatePicker.setOnClickListener(this);
+        btnSave.setOnClickListener(this);
+        
+        //ziskani id auta
+        Intent intent = getIntent();
+        if(intent != null) {
+            id_car = intent.getIntExtra("ID_CARS", -1);
+            Toast.makeText(this, "ID AUTA " + id_car, Toast.LENGTH_LONG).show();
+        }
     }
 
+    @Override
+    public void onClick(View v) {
+        if (v == btnDatePicker) {
+            // Get Current Date
+            final Calendar c = Calendar.getInstance();
+            mYear = c.get(Calendar.YEAR);
+            mMonth = c.get(Calendar.MONTH);
+            mDay = c.get(Calendar.DAY_OF_MONTH);
 
-    public void saveFuel(View v) {
-        String FuelDate = FuelDateET.getText().toString();
-        Integer FuelKm = Integer.valueOf(FuelKmET.getText().toString());
-        Double FuelPrice = Double.valueOf(FuelPriceET.getText().toString());
-        Double FuelPriceSum = Double.valueOf(FuelPriceSumET.getText().toString());
-        String FuelPlace = FuelPlaceET.getText().toString();
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                    new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                            FuelDateET.setText(dayOfMonth + "." + (monthOfYear + 1) + "." + year);
+                        }
+                    }, mYear, mMonth, mDay);
+            datePickerDialog.show();
+        }
 
-        FuelData fuel= new FuelData(FuelDate, FuelKm, FuelPrice, FuelPriceSum, FuelPlace);
-        fuel.save();
+        if(v == btnSave){
+            String FuelDate = FuelDateET.getText().toString();
+            Integer FuelKm = Integer.valueOf(FuelKmET.getText().toString());
+            Double FuelPrice = Double.valueOf(FuelPriceET.getText().toString());
+            Double FuelPriceSum = Double.valueOf(FuelPriceSumET.getText().toString());
+            String FuelPlace = FuelPlaceET.getText().toString();
 
-        startActivity(new Intent(getApplicationContext(), OptionsCar.class));
+            Double litry = FuelPriceSum/FuelPrice;
+
+            FuelData fuel= new FuelData(FuelDate, FuelKm, FuelPrice, FuelPriceSum, FuelPlace, id_car, litry);
+            fuel.save();
+
+            startActivity(new Intent(getApplicationContext(), OptionsCar.class));
+        }
 
     }
-
 }

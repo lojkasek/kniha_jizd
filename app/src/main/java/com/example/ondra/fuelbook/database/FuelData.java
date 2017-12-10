@@ -13,16 +13,20 @@ public class FuelData extends SugarRecord {
     public Double cena;
     public Double celkovaCena;
     public String misto;
+    public Integer idCar;
+    public Double litry;
 
     public FuelData(){
     }
 
-    public FuelData(String datum, int km, Double cena, Double celkovaCena, String misto) {
+    public FuelData(String datum, int km, Double cena, Double celkovaCena, String misto, int idCar, Double litry) {
         this.datum = datum;
         this.km = km;
         this.cena = cena;
         this.celkovaCena = celkovaCena;
         this.misto = misto;
+        this.idCar = idCar;
+        this.litry = litry;
     }
 
 }
