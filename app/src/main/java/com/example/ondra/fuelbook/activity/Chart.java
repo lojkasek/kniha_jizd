@@ -2,6 +2,7 @@ package com.example.ondra.fuelbook.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import com.example.ondra.fuelbook.Entity.StatisticsEntity;
 import com.example.ondra.fuelbook.R;
@@ -29,8 +30,8 @@ public class Chart extends Activity {
         List<Column> columns = new ArrayList<Column>();
         List<SubcolumnValue> values;
         ArrayList<AxisValue> axisValueX = new ArrayList<>();
-        Axis axisX = new Axis();
-        Axis axisY = new Axis().setHasLines(true);
+        Axis axisX = new Axis().setTextColor(Color.BLACK);
+        Axis axisY = new Axis().setHasLines(true).setTextColor(Color.BLACK);
 
         int id = 0;
         for(StatisticsEntity entity : hashMap.values())

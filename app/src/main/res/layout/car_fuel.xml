@@ -50,6 +50,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:text="Stav tachometru behem čerpaní"
-        android:textColor="@color/colorPrimary" />
+        android:textColor="@android:color/black" />
 
 </RelativeLayout>

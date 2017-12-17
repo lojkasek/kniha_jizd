@@ -35,8 +35,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:text="Castka"
-        android:textColor="@color/colorPrimary" />
+        android:text="Castka" />
     <TextView
         android:id="@+id/litry"
         android:layout_width="wrap_content"
@@ -44,6 +43,5 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:text="Km"
-        android:layout_below="@id/value"
-        android:textColor="@color/colorPrimary" />
+        android:layout_below="@id/value" />
 </RelativeLayout>

@@ -48,10 +48,10 @@ public class FuelAdapter extends RecyclerView.Adapter<FuelAdapter.MyViewHolder> 
     public void onBindViewHolder(MyViewHolder holder, int position) {
         NewFuel fuel = fuelList.get(position);
         holder.dateT.setText("Datum: " + fuel.date);
-        holder.placeT.setText("Misto: " + fuel.place);
+        holder.placeT.setText("Místo: " + fuel.place);
         holder.priceT.setText("Cena za litr: " + String.valueOf(fuel.price));
-        holder.pricesumT.setText("Celkova cena: " + String.valueOf(fuel.pricesum));
-        holder.acttachometrT.setText("Aktualni tachometr: " + String.valueOf(fuel.acttachometr));
+        holder.pricesumT.setText("Celková cena: " + String.valueOf(fuel.pricesum));
+        holder.acttachometrT.setText("Tachometr: " + String.valueOf(fuel.acttachometr));
     }
 
     @Override

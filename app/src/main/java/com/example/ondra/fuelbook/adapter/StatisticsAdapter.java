@@ -36,8 +36,8 @@ public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.My
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         StatisticsEntity entity = statisticsList.get(this.statisticsList.keySet().toArray()[position]);
-        holder.month.setText("Mesic: "+entity.month);
-        holder.year.setText("Rok: "+entity.year);
+        holder.month.setText("Měsíc: "+ entity.month);
+        holder.year.setText("Rok: " + entity.year);
         holder.value.setText("Částka: "+String.valueOf(entity.value));
         NumberFormat formatter = new DecimalFormat("#0.00");
         holder.litry.setText("Litry: "+String.valueOf(formatter.format(entity.litry)));

@@ -1,9 +1,11 @@
 package com.example.ondra.fuelbook.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Vibrator;
 import android.util.Xml;
 import android.view.View;
 import android.widget.Toast;
@@ -72,7 +74,11 @@ public class MainActivity extends Activity {
             outputStream = new FileWriter(Environment.getExternalStorageDirectory() + "/vystup.xml");
             outputStream.write(writer.toString());
             outputStream.close();
-            Toast.makeText(this, "Data byla ulozena.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Data byla uložena.", Toast.LENGTH_LONG).show();
+
+            Vibrator vibr = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            // Vibrate for 500 milliseconds
+            vibr.vibrate(500);
 
         }catch (Exception e)
         {

@@ -51,8 +51,8 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Car car = carList.get(position);
-        holder.title.setText("Nazev: " + car.nazev);
-        holder.speedmeter.setText("Puvodni tachometr: " + String.valueOf(car.tachometr));
+        holder.title.setText("Název: " + car.nazev);
+        holder.speedmeter.setText("Tachometr: " + String.valueOf(car.tachometr));
         holder.gasolineUsage.setText("Palivo: " + String.valueOf(car.spotreba));
     }
 
