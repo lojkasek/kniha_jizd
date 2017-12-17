@@ -8,13 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.ondra.fuelbook.R;
-import com.example.ondra.fuelbook.database.CarData;
 import com.example.ondra.fuelbook.database.FuelData;
-
 import java.util.Calendar;
 
 public class NewNotesFuel extends Activity implements View.OnClickListener{
@@ -24,7 +19,7 @@ public class NewNotesFuel extends Activity implements View.OnClickListener{
     Button btnDatePicker,btnSave;
     private int mYear, mMonth, mDay;
     int id_car;
-
+    Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,10 +38,10 @@ public class NewNotesFuel extends Activity implements View.OnClickListener{
         btnSave.setOnClickListener(this);
         
         //ziskani id auta
-        Intent intent = getIntent();
+        intent = getIntent();
         if(intent != null) {
-            id_car = intent.getIntExtra("ID_CARS", -1);
-            Toast.makeText(this, "ID AUTA " + id_car, Toast.LENGTH_LONG).show();
+            id_car = intent.getIntExtra("IDC", -1);
+            //Toast.makeText(this, "ID AUTA " + id_car, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -81,7 +76,8 @@ public class NewNotesFuel extends Activity implements View.OnClickListener{
             FuelData fuel= new FuelData(FuelDate, FuelKm, FuelPrice, FuelPriceSum, FuelPlace, id_car, litry);
             fuel.save();
 
-            startActivity(new Intent(getApplicationContext(), OptionsCar.class));
+            setResult(Activity.RESULT_OK, intent);
+            finish();
         }
 
     }

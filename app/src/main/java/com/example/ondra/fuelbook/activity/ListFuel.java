@@ -6,15 +6,10 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
-
-
 import com.example.ondra.fuelbook.Entity.NewFuel;
 import com.example.ondra.fuelbook.R;
-
 import com.example.ondra.fuelbook.adapter.FuelAdapter;
 import com.example.ondra.fuelbook.database.FuelData;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +20,8 @@ public class ListFuel extends Activity {
     private RecyclerView.LayoutManager mLayoutManager;
     private FuelAdapter fuelAdapter;
     private List<NewFuel> fuelList = new ArrayList<>();
+    int position;
+    Intent intent;
 
 
     @Override
@@ -33,6 +30,8 @@ public class ListFuel extends Activity {
         setContentView(R.layout.activity_list_fuel);
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
+        intent = getIntent();
+        position = intent.getIntExtra("IDC",-1);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view_fuel);
         fuelAdapter = new FuelAdapter(fuelList);
@@ -53,21 +52,20 @@ public class ListFuel extends Activity {
     }
 
     public void initDataToList(){
+
         //fuelList.add(new NewFuel("22.5.2012", "Ostrava", 28.5, 1000.0, 145000));
         //fuelList.add(new NewFuel("30.5.2012", "Kopřivnice", 29.8, 200.0, 150000));
         //fuelList.add(new NewFuel("22.5.2012", "Ostravice", 30.5, 1000.0, 160000));
 
-        //DATA FROM DB
-        List<FuelData> note = FuelData.listAll(FuelData.class);
 
+        //DATA FROM DB
+        List<FuelData> note = FuelData.find(FuelData.class,"ID_CAR = ?",String.valueOf(position));
 
         if(note != null & !note.isEmpty()){
             for(FuelData fuelData : note){
                 fuelList.add(new NewFuel(fuelData.datum, fuelData.misto, fuelData.cena, fuelData.celkovaCena,fuelData.km));
             }
         }
-
-
 
         fuelAdapter.notifyDataSetChanged();
     }

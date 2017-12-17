@@ -6,13 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.ondra.fuelbook.R;
+import com.example.ondra.fuelbook.database.CarData;
 
 public class OptionsCar extends Activity {
 
     int id_car;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,21 +19,32 @@ public class OptionsCar extends Activity {
 
         Intent intent = getIntent();
         if(intent != null) {
-            id_car = intent.getIntExtra("ID_CARS", -1);
-            Toast.makeText(this, "ID AUTA " + id_car, Toast.LENGTH_LONG).show();
+            id_car = intent.getIntExtra("IDC", -1);
+            //Toast.makeText(this, "Optins Car ID AUTA " + id_car, Toast.LENGTH_LONG).show();
         }
+        TextView txtCar = findViewById(R.id.txtCar);
+        CarData note = CarData.findById(CarData.class,id_car+1);
+        txtCar.setText(note.nazev);
 
     }
 
     public void openListFuel(View v)
     {
         Intent intent = new Intent(getApplicationContext(), ListFuel.class);
-        startActivity(intent);
+        intent.putExtra("IDC",id_car);
+        startActivityForResult(intent,1);
     }
 
     public void openNewNotesFuel(View v)
     {
         Intent intent = new Intent(getApplicationContext(), NewNotesFuel.class);
-        startActivity(intent);
+        intent.putExtra("IDC",id_car);
+        startActivityForResult(intent,2);
+    }
+    public void openStatistics(View v)
+    {
+        Intent intent = new Intent(getApplicationContext(), ListInfo.class);
+        intent.putExtra("IDC",id_car);
+        startActivityForResult(intent,3);
     }
 }

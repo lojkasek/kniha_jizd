@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.example.ondra.fuelbook.Entity.Car;
 import com.example.ondra.fuelbook.R;
-import com.example.ondra.fuelbook.database.CarData;
 
 import java.util.List;
 
@@ -22,36 +21,17 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
 
     private List<Car> carList;
 
-    public CarAdapterOnClickListener getCallback() {
-        return callback;
-    }
 
-    public void setCallback(CarAdapterOnClickListener callback) {
-        this.callback = callback;
-    }
-
-    private CarAdapterOnClickListener callback;
-
-
-    public interface CarAdapterOnClickListener{
-        public void onClick(long position);
-    }
-
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class MyViewHolder extends RecyclerView.ViewHolder  {
         public TextView title, gasolineUsage, speedmeter;
 
         public MyViewHolder(View view) {
             super(view);
-            view.setOnClickListener(this);
+           // view.setOnClickListener(this);
             title = (TextView) view.findViewById(R.id.nazev);
             gasolineUsage = (TextView) view.findViewById(R.id.spotreba);
             speedmeter = (TextView) view.findViewById(R.id.tachometr);
 
-        }
-
-        @Override
-        public void onClick(View view) {
-            callback.onClick(carList.get(getAdapterPosition()).id);
         }
     }
 
@@ -71,11 +51,11 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Car car = carList.get(position);
-        holder.title.setText(car.nazev);
-        holder.speedmeter.setText(String.valueOf(car.tachometr));
-        holder.gasolineUsage.setText(String.valueOf(car.spotreba));
-
+        holder.title.setText("Nazev: " + car.nazev);
+        holder.speedmeter.setText("Puvodni tachometr: " + String.valueOf(car.tachometr));
+        holder.gasolineUsage.setText("Palivo: " + String.valueOf(car.spotreba));
     }
+
 
     @Override
     public int getItemCount() {
